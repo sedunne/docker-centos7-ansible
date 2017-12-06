@@ -1,10 +1,21 @@
-FROM geerlingguy/docker-centos7-ansible:latest
+FROM centos:7
+ENV container docker
 LABEL maintainer="Stephen Dunne"
-ENV container=docker
 
-# Install Ansible and other requirements.
 RUN yum makecache fast \
- && yum -y install python-pip \
- && pip install ansible-lint \
- && yum clean all
+ && yum -y install deltarpm epel-release initscripts \
+ && yum -y update \
+ && yum -y install \
+      ansible \
+      sudo \
+      which \
+&& yum clean all
 
+# Disable requiretty.
+RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
+
+# Install Ansible inventory file.
+RUN echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts
+
+STOPSIGNAL SIGRTMIN+3
+CMD ["/usr/sbin/init"]
