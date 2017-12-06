@@ -4,12 +4,12 @@ LABEL maintainer="Stephen Dunne"
 
 RUN yum makecache fast \
  && yum -y install deltarpm epel-release initscripts \
- && yum -y update \
  && yum -y install \
-      ansible \
-      sudo \
-      which \
+    ansible sudo which \
+    python-pip \
 && yum clean all
+
+RUN pip install ansible-lint
 
 # Disable requiretty.
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/'  /etc/sudoers
