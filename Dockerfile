@@ -5,7 +5,7 @@ LABEL maintainer="Stephen Dunne"
 RUN yum makecache fast \
  && yum -y install deltarpm epel-release initscripts \
  && yum -y install \
-    ansible sudo which \
+    ansible sudo which git \
     python-pip \
 && yum clean all
 
