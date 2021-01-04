@@ -12,7 +12,7 @@ LABEL org.opencontainers.image.version=${ANSIBLE_VERSION}
 ## setup dependencies
 RUN yum makecache fast \
     && yum -y install deltarpm epel-release initscripts \
-    && yum -y install sudo which git python3 python3-pip \
+    && yum -y install sudo which git python python-pip \
     && yum clean all
 
 ## install ansible and ansible-lint
