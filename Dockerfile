@@ -16,7 +16,7 @@ RUN yum makecache fast \
     && yum clean all
 
 ## install ansible and ansible-lint
-RUN pip3 install ansible==${ANSIBLE_VERSION} ansible-lint==${ANSIBLE_LINT_VERSION}
+RUN pip install ansible==${ANSIBLE_VERSION} ansible-lint==${ANSIBLE_LINT_VERSION}
 
 # Disable requiretty, and add local inventory file
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/' /etc/sudoers && \
