@@ -1,6 +1,6 @@
 FROM centos:7
 ENV ANSIBLE_VERSION="2.9.16"
-ENV ANSIBLE_LINT_VERSION="4.3.0"
+ENV ANSIBLE_LINT_VERSION="4.2.0"
 WORKDIR /etc/ansible 
 
 LABEL org.opencontainers.image.title='sedunne/docker-centos7-ansible'
